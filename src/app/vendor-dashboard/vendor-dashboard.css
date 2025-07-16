@@ -1,0 +1,109 @@
+
+/* Full layout using Flexbox */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #F5F7FA;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 260px;
+  background-color: #0D47A1; /* Dark Blue */
+  color: #E3F2FD; /* Light text */
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+}
+
+/* Menu List */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+/* Group Titles */
+.sidebar .group-title {
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #90CAF9; /* Muted Blue */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation Links */
+.sidebar a {
+  display: block;
+  padding: 12px 15px;
+  border-radius: 6px;
+  color: #E3F2FD;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover Effect */
+.sidebar a:hover {
+  background-color: #1976D2; /* Mid Blue */
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Active Route */
+.sidebar a.active {
+  background-color: #42A5F5; /* Light Blue */
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Main Content Area */
+.dashboard-main {
+  flex: 1;
+  padding: 40px;
+  background-color: #F5F7FA;
+  overflow-y: auto;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Enhancement (optional) */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .sidebar ul {
+    display: flex;
+  }
+
+  .sidebar li {
+    margin-right: 10px;
+  }
+
+  .dashboard-main {
+    padding: 20px;
+  }
+}
