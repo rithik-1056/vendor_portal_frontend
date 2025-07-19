@@ -1,27 +1,35 @@
-<div class="login-page">
-  <div class="login-card">
-    <h2>WELCOME TO VENDOR PORTAL</h2>
-    <form (ngSubmit)="onLogin()"> <!-- ✅ Fixed here -->
-  <div class="input-wrapper">
-    <input type="text" name="vendorId" [(ngModel)]="vendorId" placeholder="Vendor ID" required />
-  </div>
-  <div class="input-wrapper">
-    <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required />
-  </div>
+<div class="container">
+  
+  <div class="login-box">
+    <h2 class="login-title">LOGIN</h2>
 
-  <div class="remember">
-    <input type="checkbox" id="remember" />
-    <label for="remember">Remember me</label>
-  </div>
-
-  <button type="submit" class="login-button">LOGIN</button>
-</form>
-
-
-    <div class="divider">Or login with</div>
-    <div class="social-buttons">
-      <button class="facebook-btn"><i class="fa fa-facebook"></i> Facebook</button>
-      <button class="google-btn"><i class="fa fa-google"></i> Google</button>
+    <label class="label">Vendor ID</label>
+    <div class="input-wrapper">
+      <i class="fas fa-user"></i>
+      <input type="text" [(ngModel)]="vendorId" placeholder="Vendor ID" class="input-field" />
     </div>
+
+    <label class="label">Password</label>
+    <div class="input-wrapper">
+      <i class="fas fa-lock"></i>
+      <input type="password" [(ngModel)]="password" placeholder="Password" class="input-field" />
+    </div>
+
+    <div class="remember">
+      <input type="checkbox" id="remember" />
+      <label for="remember">&nbsp;Remember me</label>
+    </div>
+
+    <button class="login-button" (click)="onLogin()">LOGIN</button>
+
+    <p class="social-login">Or login with</p>
+    <div class="social-buttons">
+      <button><i class="fab fa-facebook"></i> Facebook</button>
+      <button><i class="fab fa-google"></i> Google</button>
+    </div>
+
+    <p class="signup-text">
+      Not a member? <a href="#">Sign up now</a>
+    </p>
   </div>
 </div>

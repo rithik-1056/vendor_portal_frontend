@@ -18,23 +18,24 @@ export class VendorProfileView implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const vendorId = this.vendorService.getVendorId();
+  const vendorId = this.vendorService.getVendorId();
 
-    if (!vendorId) {
-      this.errorMessage = 'Vendor ID not available. Please login again.';
-      return;
+  if (!vendorId) {
+    this.errorMessage = 'Vendor ID not available. Please login again.';
+    return;
+  }
+
+  const url = `http://localhost:3000/api/vendor-profile/${vendorId}`;
+
+  this.http.get<any>(url).subscribe({
+    next: (data) => {
+      this.profile = data;
+    },
+    error: (error) => {
+      this.errorMessage = 'Failed to load profile data';
+      console.error(error);
     }
-
-    const params = new HttpParams().set('VendorId', vendorId);
-
-    this.http.get<any>('http://localhost:3000/profile', { params }).subscribe({
-      next: (data) => {
-        this.profile = data;
-      },
-      error: (error) => {
-        this.errorMessage = 'Failed to load profile data';
-        console.error(error);
-      }
-    });
+  });
   }
 }
+

@@ -1,34 +1,37 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; // Import FormsModule here
-import { CommonModule } from '@angular/common'; // Optional for structural directives like *ngIf
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { VendorService } from '../vendor.service';
 
 @Component({
   selector: 'app-vendor-login',
-  standalone: true, // Mark as standalone
-  imports: [CommonModule, FormsModule], // Import required modules here
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './vendor-login.html',
   styleUrls: ['./vendor-login.css']
 })
 export class VendorLogin {
   vendorId = '';
   password = '';
+  rememberMe = false;
   errorMessage = '';
 
   constructor(private http: HttpClient, private router: Router, private vendorService: VendorService) {}
 
   onLogin() {
+    const paddedVendorId = this.vendorId.padStart(10, '0');
+
     const params = new HttpParams()
-      .set('VendorId', this.vendorId)
+      .set('VendorId', paddedVendorId)
       .set('Password', this.password);
 
-    this.http.get<any>('http://localhost:3000/login', { params }).subscribe({
+    this.http.get<any>('http://localhost:3000/api/vendor-login', { params }).subscribe({
       next: (res) => {
         if (res.success) {
-          this.vendorService.setVendorId(this.vendorId);
-          this.router.navigate(['/dashboard/profile']);
+          this.vendorService.setVendorId(paddedVendorId);
+          this.router.navigate(['/dashboard']);
         } else {
           this.errorMessage = res.message || 'Invalid credentials.';
         }
